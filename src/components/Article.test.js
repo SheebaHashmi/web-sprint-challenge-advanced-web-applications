@@ -1,6 +1,6 @@
 import React from 'react';
 import '@testing-library/jest-dom';
-import {render,screen} from '@testing-library/react'
+import {render,screen, waitFor} from '@testing-library/react'
 import userEvent from '@testing-library/user-event';
 import MutationObserver from 'mutationobserver-shim';
 
@@ -49,14 +49,16 @@ test('renders "Associated Press" when no author is given', ()=> {
 });
 
 test('executes handleDelete when the delete button is pressed', async()=> {
-    // const handleDelete = jest.fn()
-    // render(<Article article={testArticle}/>);
+    const handleDelete = jest.fn()
+    render(<Article article={testArticle} handleDelete={handleDelete}/>);
 
-    // const button = screen.queryByTestId(/deleteButton/i)
+    const button = screen.queryByTestId(/deleteButton/i)
 
-    // userEvent.click(button)
+    userEvent.click(button)
 
-    // await expect(handleDelete).toBeCalled()
+    await waitFor(()=> {
+        expect(handleDelete).toBeCalled()
+    })
 
 });
 

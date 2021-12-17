@@ -32,7 +32,7 @@ const View = (props) => {
     const handleEdit = (article) => {
         axiosWithAuth().put(`/articles/${article.id}`,article)
         .then(resp=>{
-            // setArticles(articles.map(item => item.id == article.id?resp:item))
+            setArticles(resp.data)
             setEditing(false)
         })
         .catch(err => console.log(err))
