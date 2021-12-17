@@ -8,18 +8,20 @@ import Login from './Login';
 import View from './view';
 import Logout from './logout';
 
+import PrivateRoute from './PrivateRoute';
+
 const App = () => {
   return (
     <AppContainer>
       <BloomHeader/>
       <Header/>
       <RouteContainer>
-        <Route exact path = "/logout">
+        <PrivateRoute exact path = "/logout">
           <Logout/>
-        </Route>
-        <Route exact path = "/view">
+        </PrivateRoute>
+        <PrivateRoute exact path = "/view">
           <View/>
-        </Route>
+        </PrivateRoute>
         <Route exact path="/login">
           <Login/>
         </Route>          

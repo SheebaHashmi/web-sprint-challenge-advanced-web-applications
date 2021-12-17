@@ -18,6 +18,7 @@ const Login = () => {
         e.preventDefault();
         axiosWithAuth().post('/login',values)
             .then(resp => {
+                localStorage.setItem('token',resp.data.token)
                 push('/view');
                 setError("")  
             })
@@ -40,7 +41,7 @@ const Login = () => {
                 <Label>Password</Label>
                 <Input 
                     id="password" 
-                    type ="password" 
+                    // type ="password" 
                     name="password" 
                     value={values.password} 
                     onChange={handleChange} 
