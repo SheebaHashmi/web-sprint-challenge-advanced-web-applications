@@ -17,19 +17,18 @@ const EditForm = (props)=> {
     useEffect(()=> {
         axiosWithAuth().get(`/articles/${editId}`)
         .then(resp => {
-            console.log(resp)
-            //setArticle({})
+            setArticle(resp.data)
         })
         .catch(err => console.log(err))
-    },[])
-
+    },[editId])
+    
     const handleChange = (e)=> {
         setArticle({
             ...article,
             [e.target.name]: e.target.value
         })
     }
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         handleEdit(article);

@@ -1,5 +1,6 @@
 
 import React, { useState,useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
@@ -7,6 +8,7 @@ import Article from './Article';
 import EditForm from './EditForm';
 
 const View = (props) => {
+    const {push} = useHistory();
     const [articles, setArticles] = useState([]);
     const [editing, setEditing] = useState(false);
     const [editId, setEditId] = useState();
@@ -21,25 +23,30 @@ const View = (props) => {
 
     const handleDelete = (id) => {
         axiosWithAuth().delete(`/articles/${id}`)
-        .then(resp => console.log(resp))
+        .then(resp => {
+            setArticles(resp.data)
+        })
         .catch(err => console.log(err))
     }
 
     const handleEdit = (article) => {
-        axiosWithAuth().put(`/articles/${article.id}`)
-        .then(resp => console.log(resp))
-        .catch(err => console.log(err));
+        axiosWithAuth().put(`/articles/${article.id}`,article)
+        .then(resp=>{
+            // setArticles(articles.map(item => item.id == article.id?resp:item))
+            setEditing(false)
+        })
+        .catch(err => console.log(err))
     }
-
+    
     const handleEditSelect = (id)=> {
         setEditing(true);
         setEditId(id);
     }
-
+    
     const handleEditCancel = ()=>{
         setEditing(false);
     }
-
+    
     return(<ComponentContainer>
         <HeaderContainer>View Articles</HeaderContainer>
         <ContentContainer flexDirection="row">
