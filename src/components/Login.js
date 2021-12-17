@@ -1,6 +1,8 @@
 import React,{useState} from 'react';
-import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
+
+import styled from 'styled-components';
+
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 const Login = () => {
@@ -16,6 +18,7 @@ const Login = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
+        
         axiosWithAuth().post('/login',values)
             .then(resp => {
                 localStorage.setItem('token',resp.data.token)
@@ -41,7 +44,7 @@ const Login = () => {
                 <Label>Password</Label>
                 <Input 
                     id="password" 
-                    // type ="password" 
+                    type ="password" 
                     name="password" 
                     value={values.password} 
                     onChange={handleChange} 
@@ -49,7 +52,7 @@ const Login = () => {
 
                 <Button type='button' id="submit" onClick={handleSubmit}>Submit</Button>
             </FormGroup>
-            <p id ="error">{error}</p>
+            {error && <p id ="error">{error}</p>}
         </ModalContainer>
     </ComponentContainer>);
 }

@@ -1,14 +1,12 @@
-
 import React, { useState,useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 import Article from './Article';
 import EditForm from './EditForm';
 
-const View = (props) => {
-    const {push} = useHistory();
+const View = () => {
     const [articles, setArticles] = useState([]);
     const [editing, setEditing] = useState(false);
     const [editId, setEditId] = useState();

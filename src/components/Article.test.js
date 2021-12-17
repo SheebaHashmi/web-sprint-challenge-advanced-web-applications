@@ -15,7 +15,7 @@ const testArticle ={
     image:172,
     summary:"test"
 }
-const testArticleWithNoAuthor ={
+const testArticleWithNoAuthor = {
     author:"",
     body:"test",
     createdOn:"12-17-2021",
@@ -36,7 +36,11 @@ test('renders headline, author from the article when passed in through props', (
     const author = screen.queryByTestId(/author/i);
 
     expect(headline).toBeInTheDocument();
-    expect(author).toBeInTheDocument()
+    expect(headline).toBeTruthy()
+
+    expect(author).toBeInTheDocument();
+    expect(author).toBeTruthy();
+
 });
 
 test('renders "Associated Press" when no author is given', ()=> {
@@ -44,21 +48,22 @@ test('renders "Associated Press" when no author is given', ()=> {
 
     const author = screen.queryByTestId(/author/i);
 
+    expect(author).toBeInTheDocument();
     expect(author).toHaveTextContent(/Associated Press/i)
 
 });
 
-test('executes handleDelete when the delete button is pressed', async()=> {
+test('executes handleDelete when the delete button is pressed', ()=> {
     const handleDelete = jest.fn()
     render(<Article article={testArticle} handleDelete={handleDelete}/>);
 
     const button = screen.queryByTestId(/deleteButton/i)
 
-    userEvent.click(button)
+    userEvent.click(button);
+    
+    expect(handleDelete).toBeCalled();
+    expect(handleDelete).toBeCalledTimes(1);
 
-    await waitFor(()=> {
-        expect(handleDelete).toBeCalled()
-    })
 
 });
 

@@ -16,18 +16,23 @@ const App = () => {
       <BloomHeader/>
       <Header/>
       <RouteContainer>
+
         <PrivateRoute exact path = "/logout">
           <Logout/>
         </PrivateRoute>
+
         <PrivateRoute exact path = "/view">
           <View/>
         </PrivateRoute>
-        <Route exact path="/login">
+
+        <Route exact path = "/login">
           <Login/>
-        </Route>          
+        </Route>       
+
         <Route exact path = "/">
           <Redirect to="/login"/>
         </Route>
+        
       </RouteContainer>
     </AppContainer>
   )

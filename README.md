@@ -118,8 +118,22 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. Explain what a token is used for.
 
+Ans: A token is used for user authentication. It allows us to provide access to only valid users. By creating token authentication we can control the access we want to provide our users.
+
 2. What steps can you take in your web apps to keep your data secure?
+
+Ans: 
+    - Create authentication tokens for logged in users.
+    - Create private routes which can only be accessed if a valid token is provided.
 
 3. Describe how web servers work.
 
+Ans: A web server is a software which responds to requests made through HTTP or HTTPS. Whenever a request is made to the web server, it processes the request and responds back to the client.
+
 4. Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+
+Ans: CRUD is an acronym for Create Read Update and Delete. We can implement a CRUD operation using following HTTP methods.
+    - For Create: .post()
+    - For Read: .get()
+    - For Update: .put()
+    - For Delete: .delete()
