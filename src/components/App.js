@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import Header from './Header';
 import BloomHeader from './BloomHeader';
 import Login from './Login';
-import View from './view';
-import Logout from './logout';
+import View from './View';
+import Logout from './Logout';
 
 import PrivateRoute from './PrivateRoute';
 
